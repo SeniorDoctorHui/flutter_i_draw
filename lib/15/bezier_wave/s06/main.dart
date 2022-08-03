@@ -12,10 +12,10 @@ void main() {
   //全屏显示
   SystemChrome.setEnabledSystemUIOverlays([]);
 
-  runApp(MyApp());
+  runApp(MyApp1());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
