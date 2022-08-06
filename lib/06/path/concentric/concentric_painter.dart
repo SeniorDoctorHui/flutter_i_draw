@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_i_draw/06/path/concentric/concentric_manager.dart';
 
 class ConcentricPager extends StatefulWidget {
   ConcentricPager({this.minRadius = 10, this.maxRadius = 20, this.colorsList = const [Colors.amber, Colors.cyan], Key? key}) : super(key: key);
@@ -13,9 +15,20 @@ class ConcentricPager extends StatefulWidget {
   State<ConcentricPager> createState() => ConcentricPagerState();
 }
 
-class ConcentricPagerState extends State<ConcentricPager> {
+class ConcentricPagerState extends State<ConcentricPager> with SingleTickerProviderStateMixin {
   double _valueX = 20.0;
   double _valueY = 20.0;
+
+  late Ticker _ticker;
+  late ConcentricManager manager;
+
+  @override
+  void initState(){
+    super.initState();
+    manager = ConcentricManager(widget.colorsList);
+    _ticker = createTicker(_tick)
+      ..start();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,16 +80,24 @@ class ConcentricPagerState extends State<ConcentricPager> {
         return CustomPaint(
           size: Size(zone.maxWidth, zone.maxHeight),
           // 使用CustomPaint
-          painter: ConcentricPainter(
-              minRadius: widget.minRadius, maxRadius: widget.maxRadius, centerFactorX: _valueX / 180, centerFactorY: _valueY / 180, colorsList: widget.colorsList),
+          painter: ConcentricPainter(manage: manager,
+              minRadius: widget.minRadius, maxRadius: widget.maxRadius, centerFactorX: _valueX / 180, centerFactorY: _valueY / 180),
         );
       }),
     );
   }
+
+  void _tick(Duration elapsed) {
+        manager.tick(DateTime.now());
+  }
 }
 
 class ConcentricPainter extends CustomPainter {
-  ConcentricPainter({this.minRadius = 10, this.maxRadius = 20, this.centerFactorX = 0, this.centerFactorY = 0, this.colorsList = const [Colors.amber, Colors.cyan]});
+
+  final ConcentricManager manage;
+
+  ConcentricPainter({this.minRadius = 10, this.maxRadius = 20, this.centerFactorX = 0, this.centerFactorY = 0, required this.manage})
+  : super(repaint: manage);
 
   final double minRadius;
 
@@ -97,6 +118,7 @@ class ConcentricPainter extends CustomPainter {
     debugPrint("size.width and size.height=${size.width} ${size.height}");
     canvas.translate(size.width / 2, size.height / 2);
     Path path = Path();
+    colorsList = manage.colorsList;
     mPaint.color = colorsList[0];
     drawCircle(path, canvas, minRadius, size);
 
