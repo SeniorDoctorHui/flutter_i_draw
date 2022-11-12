@@ -67,7 +67,7 @@ class _TolyWaveLoadingState extends State<TolyWaveLoading>
 
   @override
   Widget build(BuildContext context) {
-    return   CustomPaint(
+    return  CustomPaint(
       size: widget.size,
       painter: PaperPainter(
           waveHeight: widget.waveHeight,
