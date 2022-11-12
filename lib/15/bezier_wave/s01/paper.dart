@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i_draw/06/path/combine/coordinate_pro.dart';
 
-//测试1
+//第十五章paper
 class Paper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ final Coordinate coordinate = Coordinate();
 
 @override
 void paint(Canvas canvas, Size size) {
+  //绘制坐标系
   coordinate.paint(canvas, size);
   canvas.translate(size.width / 2, size.height / 2);
   Path path = Path();
