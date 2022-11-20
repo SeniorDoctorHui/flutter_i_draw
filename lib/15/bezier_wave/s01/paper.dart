@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i_draw/06/path/combine/coordinate_pro.dart';
 
-//第十五章paper
+//第十四章paper
 class Paper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,9 @@ class Paper extends StatelessWidget {
 }
 
 class PaperPainter extends CustomPainter {
-double waveWidth = 80;
-double waveHeight = 40;
+
+double waveWidth = 80;    //波纹宽度
+double waveHeight = 40;  //波纹高度
 
 final Coordinate coordinate = Coordinate();
 
