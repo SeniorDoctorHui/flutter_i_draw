@@ -16,8 +16,9 @@ class Paper extends StatelessWidget {
 }
 
 class PaperPainter extends CustomPainter {
-double waveWidth = 80;
-double waveHeight = 40;
+
+double waveWidth = 80;    //波纹宽度
+double waveHeight = 40;  //波纹高度
 
 final Coordinate coordinate = Coordinate();
 
