@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i_draw/06/path/combine/coordinate_pro.dart';
 
 //第十五章paper
-//调到敌岛打特盗,特盗太刁投短刀，挡推顶打短刀掉，踏盗得刀盗打倒
+//调到敌岛打特盗,特盗太刁投短刀，挡推顶打短刀掉，踏盗得刀盗打到
 class Paper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
